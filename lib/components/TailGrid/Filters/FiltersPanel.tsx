@@ -1,15 +1,17 @@
 "use client"
 
-import type React from "react"
+import type { FilterBarProps } from "../../../types/tail-grid-types"
 import SearchInput from "./SearchInput"
-
 import FilterField from "./FilterField"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { getUniqueOptions } from "@/utils/getUniqueOptions"
-import type { FilterBarProps } from "@/types/tail-grid-types"
+import { Button } from "@/components/ui/button"
+import { FilterX } from "lucide-react"
+import { motion } from "motion/react"
+import React from "react"
 
-const FiltersPanel: React.FC<FilterBarProps> = ({
+const FiltersPanel = <T extends Record<string, unknown>>({
   filters,
   filterFields,
   onFilterChange,
@@ -17,13 +19,30 @@ const FiltersPanel: React.FC<FilterBarProps> = ({
   searchTerm,
   customFilterComponent,
   data,
-}) => {
+  onResetFilters,
+}: FilterBarProps<T>) => {
+  const hasActiveFilters = Object.keys(filters).length > 0 || searchTerm.length > 0
+
   return (
     <div className="rounded-lg border bg-card text-card-foreground shadow-sm mb-6 transition-all">
       <div className="flex flex-col space-y-1.5 p-4 sm:p-6">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold leading-none tracking-tight">Filters</h3>
-          {customFilterComponent && <div>{customFilterComponent}</div>}
+          <div className="flex items-center gap-2">
+            {hasActiveFilters && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+              >
+                <Button variant="outline" size="sm" onClick={onResetFilters} className="flex items-center gap-1">
+                  <FilterX className="h-4 w-4" />
+                  <span>Reset</span>
+                </Button>
+              </motion.div>
+            )}
+            {customFilterComponent && <div>{customFilterComponent}</div>}
+          </div>
         </div>
       </div>
       <div className="p-4 sm:p-6 pt-0">
@@ -55,7 +74,7 @@ const FiltersPanel: React.FC<FilterBarProps> = ({
                   placeholder={field.placeholder || `Filter by ${field.label}...`}
                   value={filters[field.key] || ""}
                   onChange={(e) => onFilterChange(field.key, e.target.value)}
-                  className={cn(field.icon && "pl-8")}
+                  className={cn(field.icon && "pl-8", "transition-all focus-visible:ring-2")}
                 />
               </div>
             )
@@ -66,5 +85,5 @@ const FiltersPanel: React.FC<FilterBarProps> = ({
   )
 }
 
-export default FiltersPanel
+export default React.memo(FiltersPanel) as typeof FiltersPanel
 

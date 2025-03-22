@@ -1,6 +1,6 @@
 "use client"
 
-import type React from "react"
+import React from "react"
 import type { PaginationControlsProps } from "../../../types/tail-grid-types"
 import PageSizeSelector from "./PageSizeSelector"
 import PaginationSummary from "./PaginationSummary"
@@ -13,6 +13,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import { motion, AnimatePresence } from "motion/react"
 
 const PaginationControls: React.FC<PaginationControlsProps> = ({
   currentPage,
@@ -42,7 +43,12 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
       for (let i = 1; i <= totalPages; i++) {
         pages.push(
           <PaginationItem key={i}>
-            <PaginationLink onClick={() => handlePageChange(i)} isActive={currentPage === i}>
+            <PaginationLink
+              onClick={() => handlePageChange(i)}
+              isActive={currentPage === i}
+              aria-label={`Page ${i}`}
+              aria-current={currentPage === i ? "page" : undefined}
+            >
               {i}
             </PaginationLink>
           </PaginationItem>,
@@ -52,7 +58,12 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
       // First page
       pages.push(
         <PaginationItem key={1}>
-          <PaginationLink onClick={() => handlePageChange(1)} isActive={currentPage === 1}>
+          <PaginationLink
+            onClick={() => handlePageChange(1)}
+            isActive={currentPage === 1}
+            aria-label="Page 1"
+            aria-current={currentPage === 1 ? "page" : undefined}
+          >
             1
           </PaginationLink>
         </PaginationItem>,
@@ -74,7 +85,12 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
       for (let i = startPage; i <= endPage; i++) {
         pages.push(
           <PaginationItem key={i}>
-            <PaginationLink onClick={() => handlePageChange(i)} isActive={currentPage === i}>
+            <PaginationLink
+              onClick={() => handlePageChange(i)}
+              isActive={currentPage === i}
+              aria-label={`Page ${i}`}
+              aria-current={currentPage === i ? "page" : undefined}
+            >
               {i}
             </PaginationLink>
           </PaginationItem>,
@@ -93,7 +109,12 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
       // Last page
       pages.push(
         <PaginationItem key={totalPages}>
-          <PaginationLink onClick={() => handlePageChange(totalPages)} isActive={currentPage === totalPages}>
+          <PaginationLink
+            onClick={() => handlePageChange(totalPages)}
+            isActive={currentPage === totalPages}
+            aria-label={`Page ${totalPages}`}
+            aria-current={currentPage === totalPages ? "page" : undefined}
+          >
             {totalPages}
           </PaginationLink>
         </PaginationItem>,
@@ -113,28 +134,41 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
         />
         <PaginationSummary currentPage={currentPage} pageSize={pageSize} totalCount={totalCount} />
       </div>
-      <Pagination className="mx-auto sm:mx-0">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious
-              onClick={() => handlePageChange(currentPage - 1)}
-              aria-disabled={currentPage === 1}
-              className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
-            />
-          </PaginationItem>
-          {renderPagination()}
-          <PaginationItem>
-            <PaginationNext
-              onClick={() => handlePageChange(currentPage + 1)}
-              aria-disabled={currentPage === totalPages}
-              className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
-            />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentPage}
+          initial={{ opacity: 0.8, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <Pagination className="mx-auto sm:mx-0">
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  aria-disabled={currentPage === 1}
+                  tabIndex={currentPage === 1 ? -1 : 0}
+                  className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
+                  aria-label="Go to previous page"
+                />
+              </PaginationItem>
+              {renderPagination()}
+              <PaginationItem>
+                <PaginationNext
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  aria-disabled={currentPage === totalPages}
+                  tabIndex={currentPage === totalPages ? -1 : 0}
+                  className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
+                  aria-label="Go to next page"
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </motion.div>
+      </AnimatePresence>
     </div>
   )
 }
 
-export default PaginationControls
+export default React.memo(PaginationControls)
 

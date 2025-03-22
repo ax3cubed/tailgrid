@@ -57,3 +57,4 @@ title: 'TailGrid Test',
 subtitle: 'This is a test of the TailGrid component',
 
 };
+
