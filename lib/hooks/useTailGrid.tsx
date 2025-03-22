@@ -148,10 +148,10 @@ export function useTailGrid<T extends Record<string, unknown>>({
     return data.filter((row) => {
       // Apply filters
       for (const key in filters) {
-        const rowValue = row[key]
-        if (filters[key] !== "all" && String(rowValue) !== filters[key]) {
-          return false
-        }
+      const rowValue = row[key]
+      if (filters[key] !== "all" && !String(rowValue).includes(filters[key])) {
+        return false
+      }
       }
 
       // Apply search
