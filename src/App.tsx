@@ -42,13 +42,71 @@ const App:React.FC = () => {
             phone: '123-456-7890',
             company: 'Acme Inc.',
           },
+          {
+            id: '3',
+            name: 'Bob Johnson',
+            email: '',
+            phone: '123-456-7890',
+            company: 'Acme Inc.',
+          },
+          {
+            id: '4',
+            name: 'Alice Brown',
+            email: 'johndoemail.com',
+            phone: '123-456-7890',
+            company: 'Acme Inc.',
+          },
+          {
+            id: '5',
+            name: 'Charlie Green',
+            email: '',
+            phone: '123-456-7890',
+            company: 'Acme Inc.',
+          },
+          {
+            id: '6',
+            name: 'Dave White',
+            email: 'johndoemail.com',
+            phone: '123-456-7890',
+            company: 'Acme Inc.',
+          },
+          {
+            id: '7',
+            name: 'Eve Black',
+            email: '',
+            phone: '123-456-7890',
+            company: 'Acme Inc.',
+          },
+          {
+            id: '8',
+            name: 'Frank Blue',
+            email: 'johndoemail.com',
+            phone: '123-456-7890',
+            company: 'Acme Inc.',
+          },
+          {
+            id: '9',
+            name: 'Grace Yellow',
+            email: '',
+            phone: '123-456-7890',
+            company: 'Acme Inc.',
+          },
+          {
+            id: '10',
+            name: 'Heidi Purple',
+            email: 'johndoemail.com',
+            phone: '123-456-7890',
+            company: 'Acme Inc.',
+          },
         ],
         filterFields: [],
         title: 'TailGrid Test',
         subtitle: 'This is a test of the TailGrid component',
       };
+
+
   return (
-    <div>
+    <div className="container mx-auto">
       <TailGrid {...config} />
     </div>
   )

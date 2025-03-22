@@ -14,7 +14,7 @@ export function useTailGrid({
     sortable = false,
     rowKey = 'id',
 }: TailGridProps) {
-    const [data, setData] = useState<any[]>(initialData);
+    const [data, setData] = useState<typeof initialData>(initialData);
     const [filters, setFilters] = useState<Record<string, string>>({});
     const [searchTerm, setSearchTerm] = useState('');
     const [sortConfig, setSortConfig] = useState<SortState | null>(null);
