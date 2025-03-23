@@ -18,7 +18,7 @@ import type {
 	TableBodyProps,
 	TableHeaderProps,
 	TableRowProps,
-} from "./tail-grid-types";
+} from "./types/tail-grid-types";
 
 // Declare a module if it's needed for third-party usage
 declare module "tailgrid" {
