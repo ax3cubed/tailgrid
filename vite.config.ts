@@ -8,7 +8,7 @@ import { glob } from "glob"
 import { fileURLToPath } from "url"
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwind(), libInjectCss(), dts({ include: ['lib'] })],
+  plugins: [react(), tailwind(), libInjectCss(), dts({ include: ['lib'] , copyDtsFiles: true})],
   build: {
    copyPublicDir: false,
     lib: {
@@ -22,17 +22,11 @@ export default defineConfig({
       },
       external: ['react', 'react/jsx-runtime'],
       input: Object.fromEntries(
-        glob.sync('lib/**/*.{ts,tsx}', {
-          ignore: ["lib/**/*.d.ts"],
-        }).map(file => [
-          // The name of the entry point
-          // lib/nested/foo.ts becomes nested/foo
+        glob.sync('lib/**/!(*.d).{ts,tsx}').map(file => [
           path.relative(
             'lib',
             file.slice(0, file.length - path.extname(file).length)
           ),
-          // The absolute path to the entry file
-          // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
           fileURLToPath(new URL(file, import.meta.url))
         ])
       )
