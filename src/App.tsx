@@ -1,11 +1,28 @@
 import React from "react";
 import { TailGrid } from "../lib/components";
 import { TailGridProps } from "@/types/tail-grid-types";
+import { Edit } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 
 const App: React.FC = () => {
-  const config: TailGridProps<{ id: string; name: string; email: string; phone: string; company: string }> = {
-    actions: [],
+  type NewType = {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+    company: string;
+  };
+
+  const config: TailGridProps<NewType> = {
+    actions: [
+      {
+
+        label: 'Edit',
+        icon: 'edit',
+        component: (row) => <Edit onClick={() => console.log(row)} />,
+        onClick: (row) => { console.log(row) }
+      }],
     columns: [
       {
         key: 'name',
@@ -226,16 +243,17 @@ const App: React.FC = () => {
         company: 'Acme Inc.',
       },
     ],
-    filterFields: [
+    customFilterComponent: <Button  variant="outline" className="bg-red-500 text-white hover:bg-red-600">Custom Filter</Button>,
+      filterFields: [
 
-      {
-        key: 'name',
-        label: 'Name',
-        type: 'text',
-        placeholder: 'Search by name',
-        icon: 'search',
+        {
+          key: 'name',
+          label: 'Name',
+          type: 'select',
+          placeholder: 'Search by name',
+          icon: 'search',
 
-      },],
+        },],
     title: 'TailGrid Test',
     subtitle: 'This is a test of the TailGrid component',
   };

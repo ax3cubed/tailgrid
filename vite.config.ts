@@ -10,6 +10,7 @@ import { fileURLToPath } from "url"
 export default defineConfig({
   plugins: [react(), tailwind(), libInjectCss(), dts({ include: ['lib'] })],
   build: {
+   copyPublicDir: false,
     lib: {
       entry: path.resolve(__dirname, 'lib/main.ts'),
       formats: ['es']
