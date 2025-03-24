@@ -1,11 +1,14 @@
 {
-	"extends": "./tsconfig.json",
-	"compilerOptions": {
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["./lib/*"]
-		},
-		"typeRoots": ["./lib/types", "./node_modules/@types/"]
-	},
-	"include": ["lib"]
+    "extends": "./tsconfig.app.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "./lib/*"
+            ]
+        }
+    },
+    "include": [
+        "lib"
+    ]
 }

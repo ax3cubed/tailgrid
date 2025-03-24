@@ -23,7 +23,7 @@ export interface FilterField {
 /**
  * Filter state for server-side filtering
  */
-export interface FilterStateProps {
+export interface FilterState {
   /** The field to filter by */
   field: string
   /** The value to filter with */
@@ -33,27 +33,17 @@ export interface FilterStateProps {
 /**
  * Sort configuration for server-side sorting
  */
-export interface SortStateProps {
+export interface SortState {
   /** The field to sort by */
   field: string
   /** The direction to sort */
   direction: "asc" | "desc"
 }
-export interface PageSizeSelectorProps {
-  pageSize: number
-  onPageSizeChange: (size: number) => void
-  pageSizeOptions: number[]
-}
 
-export interface PaginationSummaryProps {
-  currentPage: number
-  totalCount: number
-  pageSize: number
-}
 /**
  * Configuration for table columns
  */
-export interface ColumnConfigProps<T extends Record<string, unknown>> {
+export interface ColumnConfig<T extends Record<string, unknown>> {
   /** Unique key for the column, should match a property in your data objects */
   key: string
   /** Display header text for the column */
@@ -69,7 +59,7 @@ export interface ColumnConfigProps<T extends Record<string, unknown>> {
 /**
  * Configuration for expandable rows
  */
-export interface ExpandableConfigProps<T extends Record<string, unknown>> {
+export interface ExpandableConfig<T extends Record<string, unknown>> {
   /** Whether rows can be expanded */
   enabled: boolean
   /** Function to render expanded content */
@@ -79,7 +69,7 @@ export interface ExpandableConfigProps<T extends Record<string, unknown>> {
 /**
  * Action button configuration
  */
-export interface ActionConfigProps<T extends Record<string, unknown>> {
+export interface ActionConfig<T extends Record<string, unknown>> {
   /** Display label for the action button */
   label?: string
   /** Icon class for the action button */
@@ -93,7 +83,7 @@ export interface ActionConfigProps<T extends Record<string, unknown>> {
 /**
  * Response format for server-side data fetching
  */
-export interface DataFetchResponseProps<T extends Record<string, unknown>> {
+export interface DataFetchResponse<T extends Record<string, unknown>> {
   /** Array of items to display */
   items: T[]
   /** Total count of items (for pagination) */
@@ -296,7 +286,7 @@ export interface SearchInputProps {
 /**
  * Context type for TailGrid
  */
-export interface TailGridContextTypeProps<T extends Record<string, unknown>> {
+export interface TailGridContextType<T extends Record<string, unknown>> {
   data: T[]
   isLoading: boolean
   currentPage: number
