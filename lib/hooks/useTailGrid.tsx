@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback, useMemo, type KeyboardEvent } from "react"
-import type { SortState, TailGridProps } from "../types/tail-grid-types"
+import type { SortStateProps, TailGridProps } from "../types/tail-grid-types"
 import { useDebounce } from "./useDebounce"
 
 export function useTailGrid<T extends Record<string, unknown>>({
@@ -20,7 +20,7 @@ export function useTailGrid<T extends Record<string, unknown>>({
   const [data, setData] = useState<T[]>(initialData)
   const [filters, setFilters] = useState<Record<string, string>>({})
   const [searchTerm, setSearchTerm] = useState("")
-  const [sortConfig, setSortConfig] = useState<SortState | null>(null)
+  const [sortConfig, setSortConfig] = useState<SortStateProps | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(defaultPageSize)
   const [totalCount, setTotalCount] = useState(0)

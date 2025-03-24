@@ -2,12 +2,8 @@
 
 import React from "react"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { PageSizeSelectorProps } from "@/types/tail-grid-types"
 
-interface PageSizeSelectorProps {
-  pageSize: number
-  onPageSizeChange: (size: number) => void
-  pageSizeOptions: number[]
-}
 
 const PageSizeSelector: React.FC<PageSizeSelectorProps> = ({ pageSize, onPageSizeChange, pageSizeOptions }) => {
   return (

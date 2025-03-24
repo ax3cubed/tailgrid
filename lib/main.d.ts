@@ -2,14 +2,14 @@
 
 import type {
 	TailGridProps,
-	ColumnConfig,
+	ColumnConfigProps,
 	FilterField,
-	ExpandableConfig,
-	ActionConfig,
-	DataFetchResponse,
-	SortState,
-	FilterState,
-	TailGridContextType,
+	ExpandableConfigProps,
+	ActionConfigProps,
+	DataFetchResponseProps,
+	SortStateProps,
+	FilterStateProps,
+	TailGridContextTypeProps,
 	ActionButtonProps,
 	FilterBarProps,
 	PaginationControlsProps,
@@ -22,16 +22,18 @@ import type {
 
 // Declare a module if it's needed for third-party usage
 declare module "tailgrid" {
+    
+    // Export the types for use in other modules
 	export type {
 		TailGridProps,
-		ColumnConfig,
+		ColumnConfigProps,
 		FilterField,
-		ExpandableConfig,
-		ActionConfig,
-		DataFetchResponse,
-		SortState,
-		FilterState,
-		TailGridContextType,
+		ExpandableConfigProps,
+		ActionConfigProps,
+		DataFetchResponseProps,
+		SortStateProps,
+		FilterStateProps,
+		TailGridContextTypeProps,
 		ActionButtonProps,
 		FilterBarProps,
 		PaginationControlsProps,
@@ -41,4 +43,5 @@ declare module "tailgrid" {
 		TableHeaderProps,
 		TableRowProps,
 	};
+
 }

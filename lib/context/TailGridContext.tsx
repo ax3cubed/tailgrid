@@ -1,19 +1,19 @@
 "use client"
 
 import { createContext, useContext, type ReactNode } from "react"
-import type { TailGridContextType } from "../types/tail-grid-types"
+import type { TailGridContextTypeProps } from "../types/tail-grid-types"
 
-const TailGridContext = createContext<TailGridContextType<Record<string, unknown>> | undefined>(undefined)
+const TailGridContext = createContext<TailGridContextTypeProps<Record<string, unknown>> | undefined>(undefined)
 
 export function TailGridProvider<T extends Record<string, unknown>>({
   children,
   value,
 }: {
   children: ReactNode
-  value: TailGridContextType<T>
+  value: TailGridContextTypeProps<T>
 }) {
   return (
-    <TailGridContext.Provider value={value as TailGridContextType<Record<string, unknown>>}>
+    <TailGridContext.Provider value={value as TailGridContextTypeProps<Record<string, unknown>>}>
       {children}
     </TailGridContext.Provider>
   )
@@ -24,6 +24,6 @@ export function useTailGridContext<T extends Record<string, unknown>>() {
   if (context === undefined) {
     throw new Error("useTailGridContext must be used within a TailGridProvider")
   }
-  return context as TailGridContextType<T>
+  return context as TailGridContextTypeProps<T>
 }
 

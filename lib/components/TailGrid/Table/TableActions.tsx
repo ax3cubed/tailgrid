@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import type { ActionConfig } from "../../../types/tail-grid-types"
+import type { ActionConfigProps } from "../../../types/tail-grid-types"
 
 import { MoreHorizontal } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
@@ -13,7 +13,7 @@ const TableActions = <T extends Record<string, unknown>>({
   row,
   onReload,
 }: {
-  actions: ActionConfig<T>[]
+  actions: ActionConfigProps<T>[]
   row: T
   onReload: () => Promise<void>
 }) => {
@@ -21,7 +21,7 @@ const TableActions = <T extends Record<string, unknown>>({
   const visibleActions = actions.slice(0, 2)
   const dropdownActions = actions.length > 2 ? actions.slice(2) : []
 
-  const handleActionClick = (e: React.MouseEvent, action: ActionConfig<T>) => {
+  const handleActionClick = (e: React.MouseEvent, action: ActionConfigProps<T>) => {
     e.stopPropagation()
     action.onClick(row)
   }
