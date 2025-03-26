@@ -1,7 +1,7 @@
 {
   "name": "tailgrid",
   "private": false,
-  "version": "0.0.8",
+  "version": "0.0.9",
   "license": "MIT",
   "description": "tailgrid is a sophisticated and powerful table component for React, built with Tailwind CSS and Radix UI. It offers a wide range of features, including sorting, filtering, pagination, and customizable themes, making it the perfect choice for developers looking to create beautiful and functional data tables in their applications.",
   "keywords": [
