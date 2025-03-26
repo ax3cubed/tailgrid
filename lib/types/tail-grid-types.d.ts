@@ -249,6 +249,17 @@ export interface TableRowProps<T extends Record<string, unknown>> {
   cellClassName?: string
 }
 
+export interface PaginationSummaryProps {
+  currentPage: number
+  totalCount: number
+  pageSize: number
+}
+export interface PageSizeSelectorProps {
+  pageSize: number
+  onPageSizeChange: (size: number) => void
+  pageSizeOptions: number[]
+}
+
 /**
  * Props for the Pagination component
  */
@@ -266,7 +277,7 @@ export interface PaginationControlsProps {
  * Props for the ActionButton component
  */
 export interface ActionButtonProps<T extends Record<string, unknown>> {
-  action: ActionConfig<T>
+  actions: ActionConfig<T>[]
   row: T
   onReload: () => Promise<void>
 }

@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import type { ActionConfig } from "../../../types/tail-grid-types"
+import type { ActionButtonProps, ActionConfig } from "../../../types/tail-grid-types"
 
 import { MoreHorizontal } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
@@ -12,11 +12,7 @@ const TableActions = <T extends Record<string, unknown>>({
   actions,
   row,
   onReload,
-}: {
-  actions: ActionConfig<T>[]
-  row: T
-  onReload: () => Promise<void>
-}) => {
+}: ActionButtonProps<T>) => {
   // Show first 2 actions as buttons, rest in dropdown
   const visibleActions = actions.slice(0, 2)
   const dropdownActions = actions.length > 2 ? actions.slice(2) : []
