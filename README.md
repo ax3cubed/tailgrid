@@ -268,8 +268,8 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 If you find this project helpful, please consider supporting the developer:
 
-<a href="https://buymeacoffee.com/adeolaakin5" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
+<a href="https://ko-fi.com/ax3cubed" target="_blank">
+  <img src="https://storage.ko-fi.com/cdn/kofi6.png?v=6" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
 </a>
 
 ## 🙏 Acknowledgements
